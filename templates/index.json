@@ -95,6 +95,22 @@
         "padding-block-end": 72
       }
     },
+    "local_shop": {
+      "type": "local-shop",
+      "settings": {
+        "eyebrow": "Southern Oregon",
+        "heading": "Custom wooden signs, made in Southern Oregon.",
+        "text": "Carve Bros is a local business in Southern Oregon. We make custom wooden signs for homes, cabins, and businesses — lettering and layout chosen for the place the sign will hang.",
+        "button_label": "About the shop",
+        "link": "shopify://pages/about",
+        "point_1_title": "A local shop",
+        "point_1_text": "Designed and made in Southern Oregon. You’re ordering from the people who carve the sign, not a warehouse on the other side of the country.",
+        "point_2_title": "Made for your words",
+        "point_2_text": "Family names, lake houses, shop fronts, and the line you actually want on the wall. Tell us the wording and we’ll build the sign around it.",
+        "point_3_title": "Real wood",
+        "point_3_text": "Each sign is carved in wood, so the grain and the lettering belong to that piece. No two come out quite the same."
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -294,22 +310,6 @@
         "padding-block-end": 48
       }
     },
-    "local_shop": {
-      "type": "local-shop",
-      "settings": {
-        "eyebrow": "Southern Oregon",
-        "heading": "Custom wooden signs, made in Southern Oregon.",
-        "text": "Carve Bros is a local business in Southern Oregon. We make custom wooden signs for homes, cabins, and businesses — lettering and layout chosen for the place the sign will hang.",
-        "button_label": "About the shop",
-        "link": "shopify://pages/about",
-        "point_1_title": "A local shop",
-        "point_1_text": "Designed and made in Southern Oregon. You’re ordering from the people who carve the sign, not a warehouse on the other side of the country.",
-        "point_2_title": "Made for your words",
-        "point_2_text": "Family names, lake houses, shop fronts, and the line you actually want on the wall. Tell us the wording and we’ll build the sign around it.",
-        "point_3_title": "Real wood",
-        "point_3_text": "Each sign is carved in wood, so the grain and the lettering belong to that piece. No two come out quite the same."
-      }
-    },
     "sign_types": {
       "type": "sign-types",
       "blocks": {
@@ -391,6 +391,60 @@
         "button_label": "Discover Soundwood",
         "link": "shopify://pages/soundwood"
       }
+    },
+    "1793080016034e3e7b": {
+      "type": "_blocks",
+      "blocks": {
+        "instafeed_app_block_C7q8FE": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "Our Latest Work",
+            "title_color": "",
+            "title_size_v2": 28,
+            "alignment": "center",
+            "instafeed_margin_top": 30,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_C7q8FE"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
@@ -398,7 +452,8 @@
     "local_shop",
     "shop_map",
     "sign_types",
+    "product_list_fa6P9H",
     "soundwood_promo",
-    "product_list_fa6P9H"
+    "1793080016034e3e7b"
   ]
 }
