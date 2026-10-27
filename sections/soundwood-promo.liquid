@@ -1,0 +1,311 @@
+{% liquid
+  assign promo_url = section.settings.link
+  if promo_url == blank
+    assign promo_url = pages.soundwood.url
+  endif
+  if promo_url == blank
+    assign promo_url = '/pages/soundwood'
+  endif
+
+  assign promo_alt = section.settings.heading
+  if section.settings.image != blank and section.settings.image.alt != blank
+    assign promo_alt = section.settings.image.alt
+  endif
+%}
+
+<a class="soundwood-promo__link" href="{{ promo_url }}">
+  <div class="soundwood-promo__copy">
+    <p class="soundwood-promo__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    <h2 class="soundwood-promo__heading">{{ section.settings.heading | escape }}</h2>
+    <p class="soundwood-promo__text">{{ section.settings.text | escape }}</p>
+    <p class="soundwood-promo__facts">
+      Carved soundwave
+      <span aria-hidden="true">·</span>
+      Tap to listen
+      <span aria-hidden="true">·</span>
+      Made to order
+    </p>
+    <span class="soundwood-promo__cta">
+      {{ section.settings.button_label | escape }}
+      <span aria-hidden="true">→</span>
+    </span>
+  </div>
+
+  <figure class="soundwood-promo__card">
+    {% if section.settings.image != blank %}
+      {{
+        section.settings.image
+        | image_url: width: 1600
+        | image_tag:
+          widths: '500, 800, 1100, 1600',
+          sizes: '(max-width: 700px) 92vw, 42vw',
+          loading: 'lazy',
+          fetchpriority: 'low',
+          alt: promo_alt,
+          class: 'soundwood-promo__image'
+      }}
+    {% else %}
+      <img
+        class="soundwood-promo__image"
+        src="{{ 'soundwood.jpg' | asset_url }}"
+        alt="{{ promo_alt | escape }}"
+        width="1536"
+        height="1024"
+        loading="lazy"
+        fetchpriority="low"
+      >
+    {% endif %}
+    <figcaption class="soundwood-promo__caption">
+      <span class="soundwood-promo__play" aria-hidden="true">▶</span>
+      <span>
+        <b>“Love you, Mom.”</b>
+        <small>A voice, carved in wood.</small>
+      </span>
+    </figcaption>
+  </figure>
+</a>
+
+{% stylesheet %}
+  .soundwood-promo {
+    background: #222722;
+    color: #f5f2ed;
+  }
+
+  .soundwood-promo__link {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 8%;
+    align-items: center;
+    padding: 76px 7%;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .soundwood-promo__link:focus-visible {
+    outline: 3px solid #db8f66;
+    outline-offset: -8px;
+  }
+
+  .soundwood-promo__eyebrow {
+    margin: 0 0 18px;
+    color: #db8f66;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+  }
+
+  .soundwood-promo__heading {
+    margin: 0;
+    max-width: 11ch;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(42px, 5vw, 72px);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 0.98;
+  }
+
+  .soundwood-promo__text {
+    max-width: 38rem;
+    margin: 22px 0 0;
+    color: #c7cbc1;
+    font-size: 18px;
+    line-height: 1.65;
+  }
+
+  .soundwood-promo__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    margin: 22px 0 0;
+    color: #e1e1d7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .soundwood-promo__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 32px;
+    min-height: 48px;
+    padding: 14px 22px;
+    background: #b85027;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .soundwood-promo__cta span {
+    translate: 0 0;
+    transition: translate 180ms ease;
+  }
+
+  .soundwood-promo__link:hover .soundwood-promo__cta {
+    background: #923f20;
+  }
+
+  .soundwood-promo__link:hover .soundwood-promo__cta span {
+    translate: 4px 0;
+  }
+
+  .soundwood-promo__card {
+    position: relative;
+    margin: 18px 16px 22px 0;
+    background: #f1ede6;
+    rotate: 2deg;
+    translate: 0 0;
+    box-shadow: 12px 14px 0 #161b17;
+    transition: translate 220ms ease, rotate 220ms ease;
+  }
+
+  .soundwood-promo__link:hover .soundwood-promo__card {
+    rotate: 0deg;
+    translate: 0 -8px;
+  }
+
+  .soundwood-promo__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+
+  .soundwood-promo__caption {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: rgb(22 27 23 / 88%);
+    color: #f5f2ed;
+  }
+
+  .soundwood-promo__caption b,
+  .soundwood-promo__caption small {
+    display: block;
+  }
+
+  .soundwood-promo__caption b {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .soundwood-promo__caption small {
+    color: #c7cbc1;
+    font-size: 12px;
+  }
+
+  .soundwood-promo__play {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #b85027;
+    color: #fff;
+    font-size: 14px;
+  }
+
+  @media (max-width: 800px) {
+    .soundwood-promo__link {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 48px 6% 56px;
+    }
+
+    .soundwood-promo__card {
+      order: -1;
+      max-width: 520px;
+      margin: 8px auto 12px;
+      rotate: 0deg;
+    }
+
+    .soundwood-promo__link:hover .soundwood-promo__card {
+      rotate: 0deg;
+    }
+
+    .soundwood-promo__heading {
+      max-width: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .soundwood-promo__card,
+    .soundwood-promo__cta span {
+      transition: none;
+    }
+
+    .soundwood-promo__link:hover .soundwood-promo__card {
+      translate: 0 0;
+      rotate: 2deg;
+    }
+
+    .soundwood-promo__link:hover .soundwood-promo__cta span {
+      translate: 0 0;
+    }
+  }
+
+  @media (max-width: 800px) and (prefers-reduced-motion: reduce) {
+    .soundwood-promo__link:hover .soundwood-promo__card {
+      rotate: 0deg;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Soundwood promo",
+  "tag": "section",
+  "class": "soundwood-promo",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Soundwood by Carve Bros"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A gift they can hear."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Their laugh, your vows, a little “I love you.” We carve that recording into wood. Tap it, and the voice plays again."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Discover Soundwood"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Soundwood promo",
+      "category": "Promotional"
+    }
+  ]
+}
+{% endschema %}

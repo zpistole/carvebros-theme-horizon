@@ -8,7 +8,6 @@
  * ------------------------------------------------------------
  */
 {
-  "layout": "soundwood",
   "sections": {
     "main": {
       "type": "soundwood-page",

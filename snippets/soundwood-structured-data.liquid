@@ -1,0 +1,124 @@
+{% doc %}
+  Structured data for the Soundwood landing page. FAQ answers must match the visible
+  questions in sections/soundwood-page.liquid.
+
+  @param {string} title - Document title
+  @param {string} description - Meta description
+  @param {string} image_url - Absolute URL of the primary image
+  @param {string} page_url - Canonical page URL
+{% enddoc %}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": {{ page_url | append: '#webpage' | json }},
+        "url": {{ page_url | json }},
+        "name": {{ title | json }},
+        "description": {{ description | json }},
+        "inLanguage": {{ request.locale.iso_code | json }},
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": {{ shop.name | json }},
+          "url": {{ shop.url | json }}
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": {{ image_url | json }},
+          "width": 1536,
+          "height": 1024
+        },
+        "about": {
+          "@type": "Service",
+          "name": "Soundwood",
+          "serviceType": "Custom carved soundwave keepsake with a tap-to-listen recording",
+          "url": {{ page_url | json }},
+          "image": {{ image_url | json }},
+          "description": {{ description | json }},
+          "provider": {
+            "@type": "Organization",
+            "name": {{ shop.name | json }},
+            "url": {{ shop.url | json }}
+          },
+          "brand": {
+            "@type": "Brand",
+            "name": {{ shop.name | json }}
+          }
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": {{ page_url | append: '#faq' | json }},
+        "url": {{ page_url | json }},
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does the person receiving it need an app?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No dedicated Soundwood app is needed on a compatible phone. iPhone XS / XR and newer can read a web-link NFC tag in the background. Android phones must have NFC hardware and NFC enabled; exact prompts vary. Older phones may require an NFC reader app or a backup web link."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is the recording stored inside the wood?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The tag stores the listening-page link, not the audio itself. Your recording is hosted online. The phone opens that page and plays the sound. The carved waveform is visual artwork; scanning the carved shape does not play audio."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use an existing voicemail or video?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An existing recording can make a meaningful keepsake. Save the original audio or video file rather than relying on a voicemail inbox. Tell us what you have so we can confirm whether the audio can be prepared for your piece."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long should my recording be?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A short, clear message is a good starting point. A few heartfelt words can be enough. Ask about longer recordings or combining several voices before ordering; the layout and listening experience depend on your file."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How private is the listening page?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An unlisted link is not the same as a password-protected page. Anyone who has the link may be able to open or share it. Discuss access options before providing sensitive audio, especially recordings of children."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will it keep playing forever?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Playback depends on the listening page and audio hosting remaining available. Confirm the hosting duration, any ongoing fees, and what happens if the service changes before ordering. Keep your original recording and ask for a downloadable backup."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are the price, delivery time, and return policy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "These are confirmed with your custom quote. Your design, wood, size, and required date affect availability. Confirm the total price, shipping, proof approval, personalization changes, and return or damage policy before payment. For a holiday gift, contact us early."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I care for it, and what if tapping doesn’t work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Keep wood indoors and dry; dust gently with a soft cloth. To listen, unlock your phone, enable NFC where needed, and try different positions close to the marked spot. Metal or thick cases can interfere. Use your backup link if available."
+            }
+          }
+        ]
+      }
+    ]
+  }
+</script>

@@ -16,7 +16,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>Browse our latest products</p>",
+            "text": "<p>Custom wooden signs, made in Southern Oregon</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -293,10 +293,38 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "local_shop": {
+      "type": "local-shop",
+      "settings": {
+        "eyebrow": "Southern Oregon",
+        "heading": "Custom wooden signs, made here.",
+        "text": "Carve Bros is a local business in Southern Oregon. We make custom wooden signs for homes, cabins, and businesses — lettering and layout chosen for the place the sign will hang.",
+        "button_label": "About the shop",
+        "link": "shopify://pages/about",
+        "point_1_title": "A local shop",
+        "point_1_text": "Designed and made in Southern Oregon. You’re ordering from the people who carve the sign, not a warehouse on the other side of the country.",
+        "point_2_title": "Made for your words",
+        "point_2_text": "Family names, lake houses, shop fronts, and the line you actually want on the wall. Tell us the wording and we’ll build the sign around it.",
+        "point_3_title": "Real wood",
+        "point_3_text": "Each sign is carved in wood, so the grain and the lettering belong to that piece. No two come out quite the same."
+      }
+    },
+    "soundwood_promo": {
+      "type": "soundwood-promo",
+      "settings": {
+        "eyebrow": "Soundwood by Carve Bros",
+        "heading": "A gift they can hear.",
+        "text": "Their laugh, your vows, a little “I love you.” We carve that recording into wood. Tap it, and the voice plays again.",
+        "button_label": "Discover Soundwood",
+        "link": "shopify://pages/soundwood"
+      }
     }
   },
   "order": [
     "hero_jVaWmY",
+    "local_shop",
+    "soundwood_promo",
     "product_list_fa6P9H"
   ]
 }
