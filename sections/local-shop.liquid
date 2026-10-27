@@ -62,36 +62,98 @@
     "name": {{ shop.name | json }},
     "url": {{ shop.url | json }},
     "description": {{ section.settings.text | json }},
-    "areaServed": {
-      "@type": "AdministrativeArea",
-      "name": {{ section.settings.eyebrow | json }}
+    "priceRange": "$75+",
+    "areaServed": [
+      { "@type": "City", "name": "Medford", "containedInPlace": { "@type": "State", "name": "Oregon" } },
+      { "@type": "City", "name": "Central Point", "containedInPlace": { "@type": "State", "name": "Oregon" } },
+      { "@type": "City", "name": "Jacksonville", "containedInPlace": { "@type": "State", "name": "Oregon" } },
+      { "@type": "City", "name": "Ashland", "containedInPlace": { "@type": "State", "name": "Oregon" } },
+      { "@type": "City", "name": "Grants Pass", "containedInPlace": { "@type": "State", "name": "Oregon" } }
+    ],
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 42.3553207,
+      "longitude": -122.8571786
     }
+    {%- liquid
+      assign business_image = 'carve-bros-owners.png' | file_url
+      if business_image == blank and settings.logo != blank
+        assign business_image = settings.logo | image_url: width: 1200
+      endif
+      unless business_image == blank or business_image contains '://'
+        if business_image contains '//'
+          assign business_image = business_image | prepend: 'https:'
+        else
+          assign business_image = business_image | prepend: shop.url
+        endif
+      endunless
+    -%}
+    {%- if business_image != blank -%}
+      ,"image": {{ business_image | json }}
+    {%- endif -%}
     {%- if settings.logo != blank -%}
-      ,"image": {{ settings.logo | image_url: width: 1200 | prepend: 'https:' | json }}
+      ,"logo": {{ settings.logo | image_url: width: 500 | prepend: 'https:' | json }}
     {%- endif -%}
     {%- if shop.phone != blank -%}
       ,"telephone": {{ shop.phone | json }}
     {%- endif -%}
-    {%- if shop.address.address1 != blank or shop.address.city != blank -%}
-      ,"address": {
-        "@type": "PostalAddress"
-        {%- if shop.address.address1 != blank -%}
-          ,"streetAddress": {{ shop.address.address1 | json }}
-        {%- endif -%}
-        {%- if shop.address.city != blank -%}
-          ,"addressLocality": {{ shop.address.city | json }}
-        {%- endif -%}
-        {%- if shop.address.province != blank -%}
-          ,"addressRegion": {{ shop.address.province | json }}
-        {%- endif -%}
-        {%- if shop.address.zip != blank -%}
-          ,"postalCode": {{ shop.address.zip | json }}
-        {%- endif -%}
-        {%- if shop.address.country != blank -%}
-          ,"addressCountry": {{ shop.address.country | json }}
-        {%- endif -%}
+    ,"address": {
+      "@type": "PostalAddress"
+      {%- if shop.address.address1 != blank -%}
+        ,"streetAddress": {{ shop.address.address1 | json }}
+      {%- endif -%}
+      {%- if shop.address.city != blank -%}
+        ,"addressLocality": {{ shop.address.city | json }}
+      {%- else -%}
+        ,"addressLocality": "Medford"
+      {%- endif -%}
+      {%- if shop.address.province != blank -%}
+        ,"addressRegion": {{ shop.address.province | json }}
+      {%- else -%}
+        ,"addressRegion": "Oregon"
+      {%- endif -%}
+      {%- if shop.address.zip != blank -%}
+        ,"postalCode": {{ shop.address.zip | json }}
+      {%- endif -%}
+      {%- if shop.address.country != blank -%}
+        ,"addressCountry": {{ shop.address.country | json }}
+      {%- else -%}
+        ,"addressCountry": "US"
+      {%- endif -%}
+    }
+  }
+</script>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": {{ section.settings.point_1_title | json }},
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": {{ section.settings.point_1_text | json }}
+        }
+      },
+      {
+        "@type": "Question",
+        "name": {{ section.settings.point_2_title | json }},
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": {{ section.settings.point_2_text | json }}
+        }
+      },
+      {
+        "@type": "Question",
+        "name": {{ section.settings.point_3_title | json }},
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": {{ section.settings.point_3_text | json }}
+        }
       }
-    {%- endif -%}
+    ]
   }
 </script>
 
@@ -221,19 +283,19 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "Southern Oregon"
+      "default": "Medford, Oregon"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Custom wooden signs, made in Southern Oregon."
+      "default": "Custom wooden signs, carved in north Medford."
     },
     {
       "type": "textarea",
       "id": "text",
       "label": "Text",
-      "default": "Carve Bros is a local business in Southern Oregon. We make custom wooden signs for homes, cabins, and businesses — lettering and layout chosen for the place the sign will hang."
+      "default": "Carve Bros cuts each custom wooden sign in a garage workshop in north Medford, Oregon. A sign can hang indoors or outdoors. We make them for Medford, Central Point, Jacksonville, Ashland, and Grants Pass, and we ship finished signs from this shop."
     },
     {
       "type": "text",
@@ -250,37 +312,37 @@
       "type": "text",
       "id": "point_1_title",
       "label": "Point 1 title",
-      "default": "A local shop"
+      "default": "Where are the signs carved?"
     },
     {
       "type": "textarea",
       "id": "point_1_text",
       "label": "Point 1 text",
-      "default": "Designed and made in Southern Oregon. You’re ordering from the people who carve the sign, not a warehouse on the other side of the country."
+      "default": "In a garage workshop in north Medford. You are writing to the people who carve the sign. Orders for Medford, Central Point, Jacksonville, Ashland, and Grants Pass are made here."
     },
     {
       "type": "text",
       "id": "point_2_title",
       "label": "Point 2 title",
-      "default": "Made for your words"
+      "default": "Can a sign hang indoors or outdoors?"
     },
     {
       "type": "textarea",
       "id": "point_2_text",
       "label": "Point 2 text",
-      "default": "Family names, lake houses, shop fronts, and the line you actually want on the wall. Tell us the wording and we’ll build the sign around it."
+      "default": "Both. House numbers, cabin names, and shop signs are carved to be read outside and left in the weather. Name signs and wall pieces are sized for a room. Tell us which one you need."
     },
     {
       "type": "text",
       "id": "point_3_title",
       "label": "Point 3 title",
-      "default": "Real wood"
+      "default": "Do you ship, and what does a sign cost?"
     },
     {
       "type": "textarea",
       "id": "point_3_text",
       "label": "Point 3 text",
-      "default": "Each sign is carved in wood, so the grain and the lettering belong to that piece. No two come out quite the same."
+      "default": "Finished signs ship from Medford. Signs in the shop start at $75. A custom sign is priced from the wording, the size, and where it will hang. We confirm the lettering before we carve."
     }
   ],
   "presets": [

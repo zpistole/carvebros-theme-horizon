@@ -16,7 +16,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>Custom wooden signs, made in Southern Oregon</p>",
+            "text": "<p>Custom wooden signs, carved in north Medford</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -98,17 +98,17 @@
     "local_shop": {
       "type": "local-shop",
       "settings": {
-        "eyebrow": "Southern Oregon",
-        "heading": "Custom wooden signs, made in Southern Oregon.",
-        "text": "Carve Bros is a local business in Southern Oregon. We make custom wooden signs for homes, cabins, and businesses — lettering and layout chosen for the place the sign will hang.",
+        "eyebrow": "Medford, Oregon",
+        "heading": "Custom wooden signs, carved in north Medford.",
+        "text": "Carve Bros cuts each custom wooden sign in a garage workshop in north Medford, Oregon. A sign can hang indoors or outdoors. We make them for Medford, Central Point, Jacksonville, Ashland, and Grants Pass, and we ship finished signs from this shop.",
         "button_label": "About the shop",
         "link": "shopify://pages/about",
-        "point_1_title": "A local shop",
-        "point_1_text": "Designed and made in Southern Oregon. You’re ordering from the people who carve the sign, not a warehouse on the other side of the country.",
-        "point_2_title": "Made for your words",
-        "point_2_text": "Family names, lake houses, shop fronts, and the line you actually want on the wall. Tell us the wording and we’ll build the sign around it.",
-        "point_3_title": "Real wood",
-        "point_3_text": "Each sign is carved in wood, so the grain and the lettering belong to that piece. No two come out quite the same."
+        "point_1_title": "Where are the signs carved?",
+        "point_1_text": "In a garage workshop in north Medford. You are writing to the people who carve the sign. Orders for Medford, Central Point, Jacksonville, Ashland, and Grants Pass are made here.",
+        "point_2_title": "Can a sign hang indoors or outdoors?",
+        "point_2_text": "Both. House numbers, cabin names, and shop signs are carved to be read outside and left in the weather. Name signs and wall pieces are sized for a room. Tell us which one you need.",
+        "point_3_title": "Do you ship, and what does a sign cost?",
+        "point_3_text": "Finished signs ship from Medford. Signs in the shop start at $75. A custom sign is priced from the wording, the size, and where it will hang. We confirm the lettering before we carve."
       }
     },
     "in_the_shop": {
@@ -118,7 +118,7 @@
         "eyebrow": "In the Shop",
         "heading": "Where the signs are made.",
         "note": "lead time is roughly 2.5 weeks.",
-        "text": "Send the wording, about how big you want it, and where it will hang. A photo of the wall, porch, or gate helps. We’ll confirm the lettering with you before we carve.",
+        "text": "Send the wording, about how big you want it, and whether it will hang indoors or outdoors. A photo of the wall, porch, or gate helps. We confirm the lettering before we carve, then ship the finished sign from Medford.",
         "button_label": "Reach out about a job",
         "link": "shopify://pages/contact"
       }
@@ -329,42 +329,42 @@
           "type": "sign",
           "settings": {
             "title": "Personalized signs",
-            "text": "Family names, established dates, and a short line for an entry or a main room."
+            "text": "Family names, established dates, and a short line. Carved for an entry, a porch, or a main room, indoors or outdoors."
           }
         },
         "business": {
           "type": "sign",
           "settings": {
             "title": "Business signs",
-            "text": "Shop names, hours, and logos for a storefront, office, booth, or studio wall."
+            "text": "Shop names, hours, and logos for a storefront, office, booth, or studio. Cut to be read from the sidewalk or across the room."
           }
         },
         "house_numbers": {
           "type": "sign",
           "settings": {
             "title": "House number signs",
-            "text": "Address plaques for a porch, gate, or driveway, made to be read from the street."
+            "text": "Address plaques for a porch, gate, or driveway in Medford and the Rogue Valley. Sized to be read from the street and left outside."
           }
         },
         "wall_art": {
           "type": "sign",
           "settings": {
             "title": "Wall art",
-            "text": "Carved pieces meant to hang: a place name, a simple mark, or a design for one wall."
+            "text": "A place name or a short line, carved for one interior wall and sized to that room."
           }
         },
         "wedding": {
           "type": "sign",
           "settings": {
             "title": "Wedding signs",
-            "text": "Welcome boards and names for the day, made solid enough to keep afterward."
+            "text": "Welcome boards and the couple’s names for the ceremony, carved thick enough to hang at home afterward."
           }
         },
         "property": {
           "type": "sign",
           "settings": {
             "title": "Cabin and lake signs",
-            "text": "Property names and welcome lines for a cabin, lake house, or piece of land."
+            "text": "Property names and welcome lines for a cabin, lake house, or piece of land. Built for outdoors, here in the Rogue Valley or shipped to the property."
           }
         }
       },
@@ -379,8 +379,8 @@
       "settings": {
         "eyebrow": "The work",
         "heading": "Signs we make",
-        "text": "Custom wooden signs from our Southern Oregon shop. These are the pieces we make most often. If yours is different, ask.",
-        "note": "Tell us the wording, the size, and where it will hang. We confirm the design with you before we carve.",
+        "text": "These are the signs we carve most often in the north Medford shop. Each one is cut for your wording, sized for indoors or outdoors, and shipped when it is finished. If you need a different sign, tell us.",
+        "note": "Send the wording, the size, and whether it hangs inside or outside. We confirm the lettering before we carve.",
         "button_label": "Ask about a custom sign",
         "link": ""
       }
@@ -454,7 +454,7 @@
       "settings": {
         "eyebrow": "North Medford",
         "heading": "The workshop",
-        "text": "Carve Bros works from a small garage workshop in north Medford. Each sign is made there, to order.",
+        "text": "Every sign is carved in this garage workshop in north Medford, Oregon. Orders for Medford, Central Point, Jacksonville, Ashland, and Grants Pass are made here. Finished signs ship from here too.",
         "button_label": "Open in Google Maps",
         "link": "https://www.google.com/maps/place/Carve+Bros/@42.3553207,-122.8571786,17z/data=!3m1!4b1!4m6!3m5!1s0xaf8ee84572da01c5:0x6097b9a23214b6b0!8m2!3d42.3553207!4d-122.8571786"
       }

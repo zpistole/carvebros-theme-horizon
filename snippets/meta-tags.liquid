@@ -28,8 +28,8 @@
 
   if request.page_type == 'index'
     assign home_page = true
-    assign home_title = 'Custom Wooden Signs in Southern Oregon | Carve Bros'
-    assign home_description = 'Custom wooden signs made in Medford, Southern Oregon. Carve Bros makes personalized, business, house number, wall art, wedding, and cabin signs to order.'
+    assign home_title = 'Custom Wooden Signs in Medford, Oregon | Carve Bros'
+    assign home_description = 'Custom wooden signs carved in north Medford for Medford, Ashland, Grants Pass, and the Rogue Valley. Indoor or outdoor. We ship. Signs from $75.'
 
     if page_description == blank
       assign og_description = home_description
@@ -79,9 +79,12 @@
   endif
 
   assign home_image = ''
-  if home_page and page_image == blank and settings.logo != blank
-    assign home_image = settings.logo | image_url: width: 1200
-    unless home_image contains '://'
+  if home_page and page_image == blank
+    assign home_image = 'carve-bros-owners.png' | file_url
+    if home_image == blank and settings.logo != blank
+      assign home_image = settings.logo | image_url: width: 1200
+    endif
+    unless home_image == blank or home_image contains '://'
       if home_image contains '//'
         assign home_image = home_image | prepend: 'https:'
       else
@@ -181,8 +184,16 @@
     content="{{ home_image }}"
   >
   <meta
+    property="og:image:width"
+    content="1502"
+  >
+  <meta
+    property="og:image:height"
+    content="1382"
+  >
+  <meta
     property="og:image:alt"
-    content="Carve Bros, a custom wooden sign shop in Southern Oregon"
+    content="Carve Bros in the north Medford workshop, beside the CNC router"
   >
   <meta
     name="twitter:image"
@@ -190,7 +201,7 @@
   >
   <meta
     name="twitter:image:alt"
-    content="Carve Bros, a custom wooden sign shop in Southern Oregon"
+    content="Carve Bros in the north Medford workshop, beside the CNC router"
   >
 {%- endif -%}
 
