@@ -114,7 +114,7 @@
     "in_the_shop": {
       "type": "in-the-shop",
       "settings": {
-        "image": "shopify://shop_images/carve-bros-owners.png",
+        "image": "shopify://shop_images/Meet_the_Makers__Zach_and_Mark.png",
         "eyebrow": "In the Shop",
         "heading": "Where the signs are made.",
         "note": "lead time is roughly 2.5 weeks.",
@@ -463,10 +463,10 @@
   "order": [
     "hero_jVaWmY",
     "local_shop",
-    "in_the_shop",
     "product_list_fa6P9H",
-    "sign_types",
+    "in_the_shop",
     "soundwood_promo",
+    "sign_types",
     "1793080016034e3e7b",
     "shop_map"
   ]
