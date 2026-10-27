@@ -1,0 +1,194 @@
+{% liquid
+  assign shop_url = section.settings.link
+  if shop_url == blank
+    assign shop_url = pages.contact.url
+  endif
+  if shop_url == blank
+    assign shop_url = '/pages/contact'
+  endif
+
+  assign shop_alt = 'Carve Bros in the workshop, beside the CNC router'
+  if section.settings.image != blank and section.settings.image.alt != blank
+    assign shop_alt = section.settings.image.alt
+  endif
+%}
+
+<div class="in-the-shop__inner">
+  {% if section.settings.image != blank %}
+    <figure class="in-the-shop__photo">
+      {{
+        section.settings.image
+        | image_url: width: 1500
+        | image_tag:
+          widths: '400, 600, 800, 1100, 1500',
+          sizes: '(min-width: 801px) 46vw, 88vw',
+          loading: 'lazy',
+          fetchpriority: 'low',
+          alt: shop_alt,
+          class: 'in-the-shop__image'
+      }}
+    </figure>
+  {% endif %}
+
+  <div class="in-the-shop__copy">
+    <p class="in-the-shop__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    <h2 class="in-the-shop__heading">{{ section.settings.heading | escape }}</h2>
+    <p class="in-the-shop__note">As of {{ 'now' | date: '%B' }}, {{ section.settings.note | escape }}</p>
+    <p class="in-the-shop__text">{{ section.settings.text | escape }}</p>
+    <a class="in-the-shop__link" href="{{ shop_url }}">{{ section.settings.button_label | escape }}</a>
+  </div>
+</div>
+
+{% stylesheet %}
+  .in-the-shop {
+    background: #fff;
+    color: #242521;
+    border-top: 1px solid #e6e1d8;
+  }
+
+  .in-the-shop__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+    gap: 40px 6%;
+    align-items: center;
+    padding: 64px 7%;
+  }
+
+  .in-the-shop__photo {
+    margin: 0;
+    aspect-ratio: 5 / 4;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .in-the-shop__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 28%;
+  }
+
+  .in-the-shop__eyebrow {
+    margin: 0 0 14px;
+    color: #8a4b2f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .in-the-shop__heading {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .in-the-shop__note {
+    display: inline-block;
+    max-width: 100%;
+    margin: 20px 0 0;
+    padding: 8px 14px;
+    border: 1px solid #8a4b2f;
+    border-radius: 999px;
+    color: #242521;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .in-the-shop__text {
+    max-width: 28rem;
+    margin: 12px 0 0;
+    color: #4d4c47;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .in-the-shop__link {
+    display: inline-block;
+    margin-top: 22px;
+    color: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .in-the-shop__link:hover {
+    color: #8a4b2f;
+  }
+
+  .in-the-shop__link:focus-visible {
+    outline: 3px solid #8a4b2f;
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 800px) {
+    .in-the-shop__inner {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding: 48px 6% 56px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "In the shop",
+  "tag": "section",
+  "class": "in-the-shop",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "In the Shop"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Where the signs are made."
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Lead time",
+      "default": "lead time is roughly 2.5 weeks."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Send the wording, about how big you want it, and where it will hang. A photo of the wall, porch, or gate helps. We’ll confirm the lettering with you before we carve."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Reach out about a job"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "In the shop",
+      "category": "Story"
+    }
+  ]
+}
+{% endschema %}

@@ -111,6 +111,18 @@
         "point_3_text": "Each sign is carved in wood, so the grain and the lettering belong to that piece. No two come out quite the same."
       }
     },
+    "in_the_shop": {
+      "type": "in-the-shop",
+      "settings": {
+        "image": "shopify://shop_images/carve-bros-owners.png",
+        "eyebrow": "In the Shop",
+        "heading": "Where the signs are made.",
+        "note": "lead time is roughly 2.5 weeks.",
+        "text": "Send the wording, about how big you want it, and where it will hang. A photo of the wall, porch, or gate helps. We’ll confirm the lettering with you before we carve.",
+        "button_label": "Reach out about a job",
+        "link": "shopify://pages/contact"
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -451,6 +463,7 @@
   "order": [
     "hero_jVaWmY",
     "local_shop",
+    "in_the_shop",
     "product_list_fa6P9H",
     "sign_types",
     "soundwood_promo",
