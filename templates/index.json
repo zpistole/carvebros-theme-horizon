@@ -369,17 +369,8 @@
         "heading": "Signs we make",
         "text": "Custom wooden signs from our Southern Oregon shop. These are the pieces we make most often. If yours is different, ask.",
         "note": "Tell us the wording, the size, and where it will hang. We confirm the design with you before we carve.",
-        "button_label": "Ask about a custom sign"
-      }
-    },
-    "shop_map": {
-      "type": "shop-map",
-      "settings": {
-        "eyebrow": "North Medford",
-        "heading": "The workshop",
-        "text": "Carve Bros works from a small garage workshop in north Medford. Each sign is made there, to order.",
-        "button_label": "Open in Google Maps",
-        "link": "https://www.google.com/maps/place/Carve+Bros/@42.3553207,-122.8571786,17z/data=!3m1!4b1!4m6!3m5!1s0xaf8ee84572da01c5:0x6097b9a23214b6b0!8m2!3d42.3553207!4d-122.8571786"
+        "button_label": "Ask about a custom sign",
+        "link": ""
       }
     },
     "soundwood_promo": {
@@ -402,8 +393,8 @@
             "title_color": "",
             "title_size_v2": 28,
             "alignment": "center",
-            "instafeed_margin_top": 30,
-            "instafeed_margin_bottom": 0,
+            "instafeed_margin_top": 40,
+            "instafeed_margin_bottom": 40,
             "instafeed_margin_sides": 0,
             "show_instagram_link": false,
             "link_alignment": "left",
@@ -445,15 +436,25 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "shop_map": {
+      "type": "shop-map",
+      "settings": {
+        "eyebrow": "North Medford",
+        "heading": "The workshop",
+        "text": "Carve Bros works from a small garage workshop in north Medford. Each sign is made there, to order.",
+        "button_label": "Open in Google Maps",
+        "link": "https://www.google.com/maps/place/Carve+Bros/@42.3553207,-122.8571786,17z/data=!3m1!4b1!4m6!3m5!1s0xaf8ee84572da01c5:0x6097b9a23214b6b0!8m2!3d42.3553207!4d-122.8571786"
+      }
     }
   },
   "order": [
     "hero_jVaWmY",
     "local_shop",
-    "shop_map",
-    "sign_types",
     "product_list_fa6P9H",
+    "sign_types",
     "soundwood_promo",
-    "1793080016034e3e7b"
+    "1793080016034e3e7b",
+    "shop_map"
   ]
 }
