@@ -1,0 +1,289 @@
+{% liquid
+  assign ask_url = section.settings.link
+  if ask_url == blank
+    assign ask_url = pages.contact.url | default: '/policies/contact-information'
+  endif
+%}
+
+<div class="sign-types__inner">
+  <div class="sign-types__intro">
+    <p class="sign-types__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    <h2 class="sign-types__heading">{{ section.settings.heading | escape }}</h2>
+    <p class="sign-types__text">{{ section.settings.text | escape }}</p>
+  </div>
+
+  <ul class="sign-types__list">
+    {% for block in section.blocks %}
+      {% liquid
+        assign sign_number = forloop.index
+        if sign_number < 10
+          assign sign_number = sign_number | prepend: '0'
+        endif
+      %}
+      <li class="sign-types__item" {{ block.shopify_attributes }}>
+        <span class="sign-types__number">{{ sign_number }}</span>
+        <h3>{{ block.settings.title | escape }}</h3>
+        <p>{{ block.settings.text | escape }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <p class="sign-types__note">
+    {{ section.settings.note | escape }}
+    <a href="{{ ask_url }}">{{ section.settings.button_label | escape }}</a>
+  </p>
+</div>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": {{ section.settings.heading | json }},
+    "description": {{ section.settings.text | json }},
+    "itemListElement": [
+      {%- for block in section.blocks -%}
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.index }},
+          "item": {
+            "@type": "Service",
+            "name": {{ block.settings.title | json }},
+            "description": {{ block.settings.text | json }},
+            "areaServed": "Southern Oregon",
+            "provider": {
+              "@id": {{ shop.url | append: '#business' | json }}
+            }
+          }
+        }{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+  }
+</script>
+
+{% stylesheet %}
+  .sign-types {
+    background: #fff;
+    color: #242521;
+    border-top: 1px solid #e6e1d8;
+  }
+
+  .sign-types__inner {
+    padding: 72px 7% 64px;
+  }
+
+  .sign-types__intro {
+    max-width: 40rem;
+  }
+
+  .sign-types__eyebrow {
+    margin: 0 0 14px;
+    color: #8a4b2f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .sign-types__heading {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .sign-types__text {
+    margin: 16px 0 0;
+    color: #4d4c47;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  .sign-types__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 36px 48px;
+    margin: 48px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sign-types__item {
+    position: relative;
+    isolation: isolate;
+    margin: 0;
+    padding-top: 16px;
+    border-top: 1px solid #e6e1d8;
+  }
+
+  .sign-types__item::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 8px -12px -8px;
+    background-color: transparent;
+    transition: background-color 180ms ease;
+  }
+
+  .sign-types__item:hover::before {
+    background-color: #f7f4ef;
+  }
+
+  .sign-types__number {
+    display: block;
+    margin-bottom: 12px;
+    color: #8a4b2f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+
+  .sign-types__item h3 {
+    margin: 0 0 8px;
+    font-family: var(--font-heading--family);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    transition: color 180ms ease;
+  }
+
+  .sign-types__item:hover h3 {
+    color: #8a4b2f;
+  }
+
+  .sign-types__item p {
+    margin: 0;
+    color: #4d4c47;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .sign-types__note {
+    max-width: 42rem;
+    margin: 40px 0 0;
+    color: #4d4c47;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .sign-types__note a {
+    color: inherit;
+    font-weight: 700;
+    text-underline-offset: 3px;
+  }
+
+  .sign-types__note a:hover {
+    color: #8a4b2f;
+  }
+
+  .sign-types__note a:focus-visible {
+    outline: 3px solid #8a4b2f;
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 900px) {
+    .sign-types__list {
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 32px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .sign-types__inner {
+      padding: 48px 6% 52px;
+    }
+
+    .sign-types__list {
+      grid-template-columns: 1fr;
+      margin-top: 32px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sign-types__item::before,
+    .sign-types__item h3 {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Sign types",
+  "tag": "section",
+  "class": "sign-types",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The work"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Signs we make"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Custom wooden signs from our Southern Oregon shop. These are the pieces we make most often. If yours is different, ask."
+    },
+    {
+      "type": "textarea",
+      "id": "note",
+      "label": "Note",
+      "default": "Tell us the wording, the size, and where it will hang. We confirm the design with you before we carve."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Link label",
+      "default": "Ask about a custom sign"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "sign",
+      "name": "Sign",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Personalized signs"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Family names, established dates, and a short line for an entry or a main room."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sign types",
+      "category": "Story",
+      "blocks": [
+        {
+          "type": "sign"
+        },
+        {
+          "type": "sign"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

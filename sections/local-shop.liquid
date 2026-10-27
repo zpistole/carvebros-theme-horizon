@@ -11,8 +11,31 @@
 <div class="local-shop__inner">
   <div class="local-shop__intro">
     <p class="local-shop__eyebrow">{{ section.settings.eyebrow | escape }}</p>
-    <h2 class="local-shop__heading">{{ section.settings.heading | escape }}</h2>
+    <h1 class="local-shop__heading">{{ section.settings.heading | escape }}</h1>
     <p class="local-shop__text">{{ section.settings.text | escape }}</p>
+    {% if shop.address.city != blank or shop.phone != blank %}
+      {% liquid
+        assign phone_digits = shop.phone | remove: ' ' | remove: '-' | remove: '(' | remove: ')' | remove: '.' | remove: '+'
+        assign phone_label = shop.phone
+        if phone_digits.size == 11 and phone_digits.first == '1'
+          assign phone_digits = phone_digits | remove_first: '1'
+        endif
+        if phone_digits.size == 10
+          assign phone_area = phone_digits | slice: 0, 3
+          assign phone_mid = phone_digits | slice: 3, 3
+          assign phone_last = phone_digits | slice: 6, 4
+          assign phone_label = '(' | append: phone_area | append: ') ' | append: phone_mid | append: '-' | append: phone_last
+        endif
+      %}
+      <p class="local-shop__place">
+        {%- if shop.address.address1 != blank -%}{{ shop.address.address1 | escape }}, {% endif -%}
+        {%- if shop.address.city != blank -%}{{ shop.address.city | escape }}{% endif -%}
+        {%- if shop.address.province != blank -%}, {{ shop.address.province | escape }}{% endif -%}
+        {%- if shop.phone != blank -%}
+          <a href="tel:+1{{ phone_digits }}">{{ phone_label | escape }}</a>
+        {%- endif -%}
+      </p>
+    {% endif %}
     <a class="local-shop__link" href="{{ shop_url }}">{{ section.settings.button_label | escape }}</a>
   </div>
   <ul class="local-shop__points">
@@ -30,6 +53,47 @@
     </li>
   </ul>
 </div>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": {{ shop.url | append: '#business' | json }},
+    "name": {{ shop.name | json }},
+    "url": {{ shop.url | json }},
+    "description": {{ section.settings.text | json }},
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": {{ section.settings.eyebrow | json }}
+    }
+    {%- if settings.logo != blank -%}
+      ,"image": {{ settings.logo | image_url: width: 1200 | prepend: 'https:' | json }}
+    {%- endif -%}
+    {%- if shop.phone != blank -%}
+      ,"telephone": {{ shop.phone | json }}
+    {%- endif -%}
+    {%- if shop.address.address1 != blank or shop.address.city != blank -%}
+      ,"address": {
+        "@type": "PostalAddress"
+        {%- if shop.address.address1 != blank -%}
+          ,"streetAddress": {{ shop.address.address1 | json }}
+        {%- endif -%}
+        {%- if shop.address.city != blank -%}
+          ,"addressLocality": {{ shop.address.city | json }}
+        {%- endif -%}
+        {%- if shop.address.province != blank -%}
+          ,"addressRegion": {{ shop.address.province | json }}
+        {%- endif -%}
+        {%- if shop.address.zip != blank -%}
+          ,"postalCode": {{ shop.address.zip | json }}
+        {%- endif -%}
+        {%- if shop.address.country != blank -%}
+          ,"addressCountry": {{ shop.address.country | json }}
+        {%- endif -%}
+      }
+    {%- endif -%}
+  }
+</script>
 
 {% stylesheet %}
   .local-shop {
@@ -69,6 +133,26 @@
     color: #4d4c47;
     font-size: 17px;
     line-height: 1.65;
+  }
+
+  .local-shop__place {
+    margin: 16px 0 0;
+    color: #242521;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .local-shop__place a {
+    display: inline-block;
+    margin-left: 12px;
+    color: inherit;
+    font-weight: 600;
+    text-underline-offset: 3px;
+  }
+
+  .local-shop__place a:hover {
+    color: #8a4b2f;
   }
 
   .local-shop__link {
@@ -143,7 +227,7 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Custom wooden signs, made here."
+      "default": "Custom wooden signs, made in Southern Oregon."
     },
     {
       "type": "textarea",

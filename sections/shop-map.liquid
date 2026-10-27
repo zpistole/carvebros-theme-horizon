@@ -1,0 +1,161 @@
+{% liquid
+  assign maps_url = section.settings.link
+  if maps_url == blank
+    assign maps_url = 'https://www.google.com/maps/place/Carve+Bros/@42.3553207,-122.8571786,17z/data=!3m1!4b1!4m6!3m5!1s0xaf8ee84572da01c5:0x6097b9a23214b6b0!8m2!3d42.3553207!4d-122.8571786'
+  endif
+%}
+
+<div class="shop-map__inner">
+  <div class="shop-map__intro">
+    <p class="shop-map__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    <h2 class="shop-map__heading">{{ section.settings.heading | escape }}</h2>
+    <p class="shop-map__text">{{ section.settings.text | escape }}</p>
+    <a class="shop-map__link" href="{{ maps_url }}" target="_blank" rel="noopener">
+      {{ section.settings.button_label | escape }}
+    </a>
+  </div>
+  <iframe
+    class="shop-map__frame"
+    title="Google listing for Carve Bros in north Medford, Oregon"
+    src="https://maps.google.com/maps?cid=6960235855400449712&z=15&output=embed"
+    width="600"
+    height="420"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen
+  ></iframe>
+</div>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": {{ shop.url | append: '#business' | json }},
+    "hasMap": {{ maps_url | json }}
+  }
+</script>
+
+{% stylesheet %}
+  .shop-map {
+    background: #fff;
+    color: #242521;
+    border-top: 1px solid #e6e1d8;
+  }
+
+  .shop-map__inner {
+    display: grid;
+    grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.3fr);
+    gap: 36px 6%;
+    align-items: center;
+    padding: 64px 7%;
+  }
+
+  .shop-map__eyebrow {
+    margin: 0 0 14px;
+    color: #8a4b2f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .shop-map__heading {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .shop-map__text {
+    max-width: 28rem;
+    margin: 16px 0 0;
+    color: #4d4c47;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .shop-map__link {
+    display: inline-block;
+    margin-top: 22px;
+    color: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .shop-map__link:hover {
+    color: #8a4b2f;
+  }
+
+  .shop-map__link:focus-visible {
+    outline: 3px solid #8a4b2f;
+    outline-offset: 4px;
+  }
+
+  .shop-map__frame {
+    display: block;
+    width: 100%;
+    height: 420px;
+    border: 0;
+    background: #f7f4ef;
+  }
+
+  @media (max-width: 800px) {
+    .shop-map__inner {
+      grid-template-columns: 1fr;
+      padding: 48px 6% 40px;
+    }
+
+    .shop-map__frame {
+      height: 320px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Shop map",
+  "tag": "section",
+  "class": "shop-map",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "North Medford"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The workshop"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Carve Bros works from a small garage workshop in north Medford. Each sign is made there, to order."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Link label",
+      "default": "Open in Google Maps"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Google Maps link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop map",
+      "category": "Story"
+    }
+  ]
+}
+{% endschema %}

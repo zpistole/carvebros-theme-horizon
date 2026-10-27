@@ -298,7 +298,7 @@
       "type": "local-shop",
       "settings": {
         "eyebrow": "Southern Oregon",
-        "heading": "Custom wooden signs, made here.",
+        "heading": "Custom wooden signs, made in Southern Oregon.",
         "text": "Carve Bros is a local business in Southern Oregon. We make custom wooden signs for homes, cabins, and businesses — lettering and layout chosen for the place the sign will hang.",
         "button_label": "About the shop",
         "link": "shopify://pages/about",
@@ -308,6 +308,78 @@
         "point_2_text": "Family names, lake houses, shop fronts, and the line you actually want on the wall. Tell us the wording and we’ll build the sign around it.",
         "point_3_title": "Real wood",
         "point_3_text": "Each sign is carved in wood, so the grain and the lettering belong to that piece. No two come out quite the same."
+      }
+    },
+    "sign_types": {
+      "type": "sign-types",
+      "blocks": {
+        "personalized": {
+          "type": "sign",
+          "settings": {
+            "title": "Personalized signs",
+            "text": "Family names, established dates, and a short line for an entry or a main room."
+          }
+        },
+        "business": {
+          "type": "sign",
+          "settings": {
+            "title": "Business signs",
+            "text": "Shop names, hours, and logos for a storefront, office, booth, or studio wall."
+          }
+        },
+        "house_numbers": {
+          "type": "sign",
+          "settings": {
+            "title": "House number signs",
+            "text": "Address plaques for a porch, gate, or driveway, made to be read from the street."
+          }
+        },
+        "wall_art": {
+          "type": "sign",
+          "settings": {
+            "title": "Wall art",
+            "text": "Carved pieces meant to hang: a place name, a simple mark, or a design for one wall."
+          }
+        },
+        "wedding": {
+          "type": "sign",
+          "settings": {
+            "title": "Wedding signs",
+            "text": "Welcome boards and names for the day, made solid enough to keep afterward."
+          }
+        },
+        "property": {
+          "type": "sign",
+          "settings": {
+            "title": "Cabin and lake signs",
+            "text": "Property names and welcome lines for a cabin, lake house, or piece of land."
+          }
+        }
+      },
+      "block_order": [
+        "personalized",
+        "business",
+        "house_numbers",
+        "wall_art",
+        "wedding",
+        "property"
+      ],
+      "settings": {
+        "eyebrow": "The work",
+        "heading": "Signs we make",
+        "text": "Custom wooden signs from our Southern Oregon shop. These are the pieces we make most often. If yours is different, ask.",
+        "note": "Tell us the wording, the size, and where it will hang. We confirm the design with you before we carve.",
+        "button_label": "Ask about a custom sign"
+      }
+    },
+    "shop_map": {
+      "type": "shop-map",
+      "settings": {
+        "eyebrow": "North Medford",
+        "heading": "The workshop",
+        "text": "Carve Bros works from a small garage workshop in north Medford. Each sign is made there, to order.",
+        "button_label": "Open in Google Maps",
+        "link": "https://www.google.com/maps/place/Carve+Bros/@42.3553207,-122.8571786,17z/data=!3m1!4b1!4m6!3m5!1s0xaf8ee84572da01c5:0x6097b9a23214b6b0!8m2!3d42.3553207!4d-122.8571786"
       }
     },
     "soundwood_promo": {
@@ -324,6 +396,8 @@
   "order": [
     "hero_jVaWmY",
     "local_shop",
+    "shop_map",
+    "sign_types",
     "soundwood_promo",
     "product_list_fa6P9H"
   ]
